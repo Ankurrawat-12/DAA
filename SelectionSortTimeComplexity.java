@@ -61,13 +61,14 @@ class SelectionSortTimeComplexity {
     }
 
     public static void main(String[] args) {
-        int n;
-        System.out.println("Enter length of array: ");
-        Scanner obj = new Scanner(System.in);
-        n = obj.nextInt();
-        AverageCase avgArray = new AverageCase(n);
-        BestCase bestArray = new BestCase(n);
-        WorstCase worstArray = new WorstCase(n);
+        int size;
+        System.out.print("Enter length of array :- ");
+        Scanner scanner = new Scanner(System.in);
+        size = scanner.nextInt();
+        scanner.close();
+        AverageCase avgArray = new AverageCase(size);
+        BestCase bestArray = new BestCase(size);
+        WorstCase worstArray = new WorstCase(size);
         selectionSort(bestArray.arr);
         selectionSort(avgArray.arr);
         selectionSort(worstArray.arr);
