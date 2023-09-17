@@ -20,9 +20,7 @@ public class BinarySearchTimeComplexity {
             if(arr[mid] == key){
                 long end = System.currentTimeMillis();
                 long time = end - start;
-                System.out.println("Time : " + time);
-                // System.out.println(mid);
-                
+                System.out.print(time + " ");
                 return ;
             }
             else if(arr[mid] > key){
@@ -34,30 +32,30 @@ public class BinarySearchTimeComplexity {
         }
     }
 
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("enter the size of array ");
-        int size = sc.nextInt();
-        int [] arr = new int[size];
-        for(int i = 0; i<size; i++){
-            arr[i] = i+1;
+    static class ArrayGenerator {
+        int[] arr;
+        ArrayGenerator(int n) {
+            arr = new int[n];
+            for (int i = 0; i < n; i++) {
+                arr[i] = i;
+            }
         }
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter the size of array :-  ");
+        int size = scanner.nextInt();
+
+        scanner.close();
+
+        ArrayGenerator array = new ArrayGenerator(size);
         Random random = new Random();
         int randNo = random.nextInt(size);
 
-        System.out.println("Best case : ");
-        // printArr(arr);
-        binarySearch(arr, (size/2)+1);
-
-        System.out.println("Average case : ");
-        // printArr(arr);
-        binarySearch(arr, randNo);
-
-        System.out.println("worst case : ");
-        // printArr(arr);
-        binarySearch(arr, 1);
-        
-
-        sc.close();
+        binarySearch(array.arr, (size/2)+1);
+        binarySearch(array.arr, randNo);
+        binarySearch(array.arr, size - 1);
     }
 }

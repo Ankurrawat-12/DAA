@@ -25,53 +25,51 @@ public class InsertionSortTimeComplexity {
         }
         long end = System.currentTimeMillis();
         long time = end - start;
-        System.out.println("Time : " + time);
+        System.out.print(time + " ");
 
     }
 
-    static void bestCase (int size , int arr[]){
-        for(int i = 0; i<size; i++ ){
-            arr[i] = i;
-        } 
-    }
-
-    static void worstCase(int size , int arr[]){
-        for (int i = size - 1; i >= 0; i--) {
-            arr[i] = size - i;
+    static class BestCase {
+        int[] arr;
+        BestCase(int n) {
+            arr = new int[n];
+            for (int i = 0; i < n; i++) {
+                arr[i] = i;
+            }
         }
     }
 
-    static void averageCase(int arr[], int size){
-        Random rand = new Random();
-        for(int i=0; i<size; i++){
-            arr[i] = rand.nextInt(size);
+    static class WorstCase {
+        int[] arr;
+        WorstCase(int n) {
+            arr = new int[n];
+            for (int i = n - 1; i >= 0; i--) {
+                arr[i] = n - i;
+            }
+        }
+    }
+
+    static class AverageCase {
+        private int[] arr;
+        AverageCase(int n) {
+            arr = new int[n];
+            Random rand = new Random();
+            for (int i = 0; i < n; i++) {
+                arr[i] = rand.nextInt(n);
+            }
         }
     }
 
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Enter the size of array ");
-        int size = sc.nextInt();
-        sc.close();
-        int [] arr = new int[size];
-
-        System.out.println("Worst case");
-        worstCase(size, arr);
-        // printArr(arr);
-        insertionSort(arr);
-        // printArr(arr);
-        
-        System.out.println("Best case");
-        bestCase(size, arr);
-        // printArr(arr);
-        insertionSort(arr);
-        // printArr(arr);
-        
-        System.out.println("Average case");
-        averageCase(arr, size);
-        // printArr(arr);
-        insertionSort(arr);
-        // printArr(arr);
-        
+        int n;
+        System.out.println("Enter length of array: ");
+        Scanner obj = new Scanner(System.in);
+        n = obj.nextInt();
+        AverageCase avgArray = new AverageCase(n);
+        BestCase bestArray = new BestCase(n);
+        WorstCase worstArray = new WorstCase(n);
+        insertionSort(bestArray.arr);
+        insertionSort(avgArray.arr);
+        insertionSort(worstArray.arr);
     }
 }

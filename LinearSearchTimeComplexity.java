@@ -16,7 +16,7 @@ public class LinearSearchTimeComplexity {
             if(arr[i] == key){
                 long end = System.currentTimeMillis();
                 long time = end - start;
-                System.out.println("time : " + time);
+                System.out.print(time + " ");
                 arr[i] = 0;
                 return ;
             }
@@ -39,34 +39,59 @@ public class LinearSearchTimeComplexity {
         arr[arr.length - 1] = key;
     }
 
-    
+    static class BestCase {
+        int[] array;
+        BestCase(int[] arr, int key) {
+            array = arr;
+            array[0] = key;
+        }
+    }
+
+    static class WorstCase {
+        int[] array;
+        WorstCase(int[] arr, int key) {
+            array = arr;
+            array[arr.length / 2] = key;
+        }
+    }
+
+    static class AverageCase {
+        int[] array;
+        AverageCase(int[] arr, int key) {
+            Random random = new Random();
+            int randomIndex = random.nextInt(arr.length);
+            array = arr;
+            array[randomIndex] = key;
+        }
+    }
+
+    static class ArrayGenerator {
+        int[] arr;
+        ArrayGenerator(int n) {
+            arr = new int[n];
+            for (int i = 1; i < n; i++) {
+                arr[i] = i;
+            }
+        }
+    }
 
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("enter the size of array ");
-        int size = sc.nextInt();
-        int [] arr = new int[size];
-        for(int i = 0; i<size; i++){
-            arr[i] = i;
-        }
+        int key = 0;
 
+        Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Best case : ");
-        bestCase(arr, -1);
-        // printArr(arr);
-        linearSearch(arr, -1);
+        System.out.print("Enter the size of array :-  ");
+        int size = scanner.nextInt();
 
-        System.out.println("Average case : ");
-        averageCase(arr, -1);
-        // printArr(arr);
-        linearSearch(arr, -1);
+        scanner.close();
 
-        System.out.println("worst case : ");
-        worstCase(arr, -1);
-        // printArr(arr);
-        linearSearch(arr, -1);
-        
-        sc.close();
-        
+        ArrayGenerator array = new ArrayGenerator(size);
+        BestCase bestCase = new BestCase(array.arr, key);
+        AverageCase averageCase = new AverageCase(array.arr, key);
+        WorstCase worstCase = new WorstCase(array.arr, key);
+
+        linearSearch(bestCase.array, key);
+        linearSearch(averageCase.array, key);
+        linearSearch(worstCase.array, key);
     }
 }
