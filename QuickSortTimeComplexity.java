@@ -34,9 +34,16 @@ public class QuickSortTimeComplexity {
         }
     }
 
+    static void quickSortTime(int[] arr){
+        long start = System.currentTimeMillis();
+        quickSort(arr, 0, arr.length - 1);
+        long end = System.currentTimeMillis();
+        long time = end - start;
+        System.out.print(time + " ");
+    }
+
     static class BestCase {
         int[] arr;
-
         BestCase(int n) {
             arr = new int[n];
             Random rand = new Random();
@@ -48,7 +55,6 @@ public class QuickSortTimeComplexity {
 
     static class WorstCase {
         int[] arr;
-
         WorstCase(int n) {
             arr = new int[n];
             for (int i = n - 1; i >= 0; i--) {
@@ -59,7 +65,6 @@ public class QuickSortTimeComplexity {
 
     static class AverageCase {
         int[] arr;
-
         AverageCase(int n) {
             arr = new int[n];
             Random rand = new Random();
@@ -69,36 +74,21 @@ public class QuickSortTimeComplexity {
         }
     }
 
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter the size of array ");
         int n = sc.nextInt();
-        AverageCase avgArray = new AverageCase(n);
-        BestCase bestArray = new BestCase(n);
-        WorstCase worstArray = new WorstCase(n);
-
-        // Best case
-        long start = System.currentTimeMillis();
-        quickSort(bestArray.arr, 0, n - 1);
-        long end = System.currentTimeMillis();
-        long time = end - start;
-        System.out.print( time + " ");
-
-        // Average case
-        start = System.currentTimeMillis();
-        quickSort(avgArray.arr, 0, n - 1);
-        end = System.currentTimeMillis();
-        time = end - start;
-        System.out.print(time + " ");
-
-        // Worst case
-        start = System.currentTimeMillis();
-        quickSort(worstArray.arr, 0, n - 1);
-        end = System.currentTimeMillis();
-        time = end - start;
-        System.out.print(time + " ");
-
         sc.close();
+
+
+        AverageCase avgCase = new AverageCase(n);
+        BestCase bestCase = new BestCase(n);
+        WorstCase worstCase = new WorstCase(n);
+
+        quickSortTime(bestCase.arr);
+        quickSortTime(avgCase.arr);
+        quickSortTime(worstCase.arr);
     }
 }
 
